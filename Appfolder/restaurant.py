@@ -34,3 +34,22 @@ class Customer(Base):
                 session.delete(review)
         session.commit()
 
+class Restaurant(Base):
+    __tablename__ = 'restaurants'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    price = Column(Integer)
+
+    reviews = relationship('Review', back_populates='restaurant')
+
+    @classmethod
+    def fanciest(cls):
+        return session.query(cls).order_by(desc(cls.price)).first()
+
+    def all_reviews(self):
+        review_strings = [
+            f"Review for {self.name} by {review.customer.full_name()}: {review.star_rating} stars."
+            for review in self.reviews
+        ]
+        return review_strings
