@@ -6,7 +6,7 @@
 3. python
 4. slq
 5. sql alchemy
-#Instuctions
+# Instuctions
 1. Clone the repository to  your laptop and open the folder
 2. run pipenv install then pipenv shell
 3. run python seed.py
